@@ -1,0 +1,31 @@
+package ch.PixelTV.Listeners;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+import de.domedd.betternick.api.nickedplayer.NickedPlayer;
+
+import de.dytanic.cloudnet.api.CloudAPI;
+import de.dytanic.cloudnet.bridge.CloudServer;
+import de.dytanic.cloudnet.lib.player.CloudPlayer;
+import de.dytanic.cloudnet.lib.player.permission.PermissionGroup;
+
+public class Chat implements Listener {
+	
+	public void onChat(AsyncPlayerChatEvent e) {
+		Player p = e.getPlayer();
+		NickedPlayer np = new NickedPlayer(p);
+		if(np.isNicked()) {
+			e.setFormat("§a" + np.getNickName() + " §8\u00bb §7" + e.getMessage());
+		} else {
+			PermissionGroup permissionGroup = ((CloudPlayer)CloudServer.getInstance().getCloudPlayers().get(e.getPlayer().getUniqueId())).getPermissionEntity().getHighestPermissionGroup(CloudAPI.getInstance().getPermissionPool());
+		    String prefix = ChatColor.translateAlternateColorCodes('&', permissionGroup.getPrefix());
+		    String display = ChatColor.translateAlternateColorCodes('&', permissionGroup.getDisplay());
+		    e.setFormat(prefix + p.getDisplayName() + "§8\u00bb §7" + e.getMessage());
+		}
+		
+	}
+	
+}
