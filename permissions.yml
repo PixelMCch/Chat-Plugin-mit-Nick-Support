@@ -1,0 +1,9 @@
+Home deleten | -
+Feed | System.Feed
+Fly | System.Fly
+GameMode | System.GameMode (Für andere --> System.GameMode.Others)
+Farbig schreiben | System.ChatColor
+Heal | System.Heal (Für andere --> System.Heal.Others)
+InvSee | System.InvSee (Für Silent --> System.InvSee.Silent)
+Werkbank | System.WorkBench
+Geld | Get: - ; Add: System.Money.Add ; Set: System.Money.Set ; Remove: System.Money.Remove
